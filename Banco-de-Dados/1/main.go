@@ -47,11 +47,14 @@ func main() {
 	// 	panic(err)
 	// }
 	// fmt.Printf("O produto %v, possui o preço de: %.2f", product.Name, product.Price)
-	products, err = selectAllProducts(db)
+	products, err := selectAllProducts(db)
 	if err != nil {
 		panic(err)
 	}
 
+	for _, product := range products {
+		fmt.Printf("O produto %v, possui o preço de: %.2f\n", product.Name, product.Price)
+	}
 }
 
 func insertProduct(db *sql.DB, product *Product) error {
