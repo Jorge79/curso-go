@@ -19,14 +19,24 @@ func main() {
 	}
 	db.AutoMigrate(&Product{})
 
-	db.Create(&Product{Name: "Notebook", Price: 1.000})
+	// db.Create(&Product{Name: "Notebook", Price: 1.000})
 
-	//create Batch
-	products := db.Create(&[]Product{
-		{Name: "TV", Price: 1.000},
-		{Name: "Smartphone", Price: 2.000},
-		{Name: "Tablet", Price: 1.500},
-	})
+	// //create Batch
+	// products := db.Create(&[]Product{
+	// 	{Name: "TV", Price: 1.000},
+	// 	{Name: "Smartphone", Price: 2.000},
+	// 	{Name: "Tablet", Price: 1.500},
+	// })
 
-	db.Create(&products)
+	// db.Create(&products)
+
+	// select one
+	// var product Product
+	// db.First(&product, 2)
+	// fmt.Println(product)
+	// db.First(&Product{}, "name = ?", "Notebook")
+
+	//select all
+	var products []Product
+	db.Find(&products)
 }
