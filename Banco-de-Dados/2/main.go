@@ -46,10 +46,18 @@ func main() {
 	// }
 
 	//where
-	var products []Product
-	db.Where("name LIKE ?", "%books").Find(&products)
-	for _, product := range products {
-		fmt.Println(product)
-	}
+	// var products []Product
+	// db.Where("name LIKE ?", "%books").Find(&products)
+	// for _, product := range products {
+	// 	fmt.Println(product)
+
+	var p Product
+	db.First(&p, 1)
+	p.Name = "New Monitor"
+	db.Save(&p)
+
+	var p2 Product
+	db.First(&p2, 2)
+	fmt.Println(p2.Name)
 
 }
