@@ -30,10 +30,12 @@ func main() {
 	}
 	db.AutoMigrate(&Product{}, &Category{})
 
-	category := Category{Name: "Eletronicos"}
-	db.Create(&category)
+	// category := Category{Name: "Cozinha"}
+	// db.Create(&category)
 
-	db.Create(&Product{Name: "Mouse", Price: 1000, CategoryID: 1})
+	var category Category
+	db.Find(&category, "name = ?", "Cozinha")
+	db.Create(&Product{Name: "Panela", Price: 70, CategoryID: category.ID})
 
 	var categories []Category
 	err = db.Model(&Category{}).Preload("Products").Find(&categories).Error
