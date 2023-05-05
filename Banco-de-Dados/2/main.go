@@ -1,10 +1,9 @@
 package main
 
 import (
-	"fmt"
-
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 type Category struct {
@@ -34,31 +33,13 @@ func main() {
 		panic("failed to connect database")
 	}
 	db.AutoMigrate(&Product{}, &Category{})
-
-	category := Category{Name: "Cozinha"}
-	db.Create(&category)
-
-	category2 := Category{Name: "Eletronicos"}
-	db.Create(&category2)
-
-	// db.Create(&SerialNumber{
-	// 	Number:    "123",
-	// 	ProductID: 7,
-	// })
-
-	db.Find(&category, "name = ?", "Cozinha")
-	db.Create(&Product{Name: "Panela", Price: 80, Categories: []Category{category, category2}})
-
-	var categories []Category
-	err = db.Model(&Category{}).Preload("Products").Find(&categories).Error
+	tx := db.Begin()
+	var c Category
+	err = tx.Debug().Clauses(clause.Locking{Strength: "UPDATE"}).First(&c).Error
 	if err != nil {
 		panic(err)
 	}
-
-	for _, category := range categories {
-		fmt.Println(category.Name, ":")
-		for _, product := range category.Products {
-			println("- ", product.ID, product.Name)
-		}
-	}
+	c.Name = "Teste"
+	tx.Debug().Save(&c)
+	tx.Commit()
 }
