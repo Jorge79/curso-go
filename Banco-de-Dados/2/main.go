@@ -10,24 +10,22 @@ import (
 type Category struct {
 	ID       int `gorm:"primaryKey"`
 	Name     string
-	Products []Product
+	Products []Product `gorm:"many2many:products_categories;"`
 }
 
 type Product struct {
-	ID           int `gorm:"primaryKey"`
-	Name         string
-	CategoryID   int
-	Category     Category
-	SerialNumber SerialNumber
-	Price        float64
+	ID         int `gorm:"primaryKey"`
+	Name       string
+	Categories []Category `gorm:"many2many:products_categories;"`
+	Price      float64
 	gorm.Model
 }
 
-type SerialNumber struct {
-	ID        int `gorm:"primaryKey"`
-	Number    string
-	ProductID int
-}
+// type SerialNumber struct {
+// 	ID        int `gorm:"primaryKey"`
+// 	Number    string
+// 	ProductID intse
+// }
 
 func main() {
 	dsn := "root:root@tcp(localhost:3306)/curso-go?charset=utf8mb4&parseTime=True&loc=Local"
@@ -35,23 +33,24 @@ func main() {
 	if err != nil {
 		panic("failed to connect database")
 	}
-	db.AutoMigrate(&Product{}, &Category{}, &SerialNumber{})
+	db.AutoMigrate(&Product{}, &Category{})
 
 	category := Category{Name: "Cozinha"}
 	db.Create(&category)
 
-	db.Create(&Product{Name: "Fogão", Price: 1500, CategoryID: category.ID})
+	category2 := Category{Name: "Eletronicos"}
+	db.Create(&category2)
 
-	db.Create(&SerialNumber{
-		Number:    "123",
-		ProductID: 7,
-	})
+	// db.Create(&SerialNumber{
+	// 	Number:    "123",
+	// 	ProductID: 7,
+	// })
 
 	db.Find(&category, "name = ?", "Cozinha")
-	// db.Create(&Product{Name: "Panela", Price: 80, CategoryID: category.ID})
+	db.Create(&Product{Name: "Panela", Price: 80, Categories: []Category{category, category2}})
 
 	var categories []Category
-	err = db.Model(&Category{}).Preload("Products").Preload("Products.SerialNumber").Find(&categories).Error
+	err = db.Model(&Category{}).Preload("Products").Find(&categories).Error
 	if err != nil {
 		panic(err)
 	}
@@ -59,7 +58,7 @@ func main() {
 	for _, category := range categories {
 		fmt.Println(category.Name, ":")
 		for _, product := range category.Products {
-			println("- ", product.ID, product.Name, "Serial Number: ", product.SerialNumber.Number)
+			println("- ", product.ID, product.Name)
 		}
 	}
 }
