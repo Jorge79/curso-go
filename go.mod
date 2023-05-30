@@ -1,3 +1,3 @@
-module github.com/Jorge79/curso-go/packaging/1
+module github.com/Jorge79/estudos-go/packaging/1
 
 go 1.20
