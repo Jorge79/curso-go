@@ -7,8 +7,9 @@ import (
 )
 
 func main() {
-	fmt.Println("Hello, World!")
-
-	m := math.Math{A: 1, B: 2}
+	m := math.NewMath(1, 2)
+	// m2 := math.Math{}
+	// fmt.Println(m2.Add())
 	fmt.Println(m.Add())
+	println(math.X)
 }
