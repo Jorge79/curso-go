@@ -32,3 +32,15 @@ func TestCalculateTaxBatch(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkCalculateTax(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		calculateTax(500)
+	}
+}
+
+func BenchmarkCalculateTax2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		calculateTax2(500)
+	}
+}
