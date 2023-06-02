@@ -1,6 +1,6 @@
 package main
 
-import "github.com/Jorge79/curso-go/packaging/3/math"
+import "github.com/Jorge79/estudos-go/packaging/4/math"
 
 func main() {
 	n := math.NewMath(1, 2)
