@@ -19,6 +19,7 @@ func TestCalculateTaxBatch(t *testing.T) {
 	}
 
 	table := []calcTax{
+		{0, 0},
 		{500, 5},
 		{1000, 10},
 		{2000, 10},
