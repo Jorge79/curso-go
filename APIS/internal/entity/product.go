@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	ErrIdIsRequired    = errors.New("id is required")
+	ErrIDIsRequired    = errors.New("id is required")
 	ErrInvalidID       = errors.New("invalid id")
 	ErrNameIsRequired  = errors.New("name is required")
 	ErrPriceIsRequired = errors.New("price is required")
@@ -38,21 +38,22 @@ func NewProduct(name string, price int) (*Product, error) {
 
 func (p *Product) Validate() error {
 	if p.ID.String() == "" {
-		return ErrIdIsRequired
+		return ErrIDIsRequired
 	}
 
 	if _, err := entity.ParseID(p.ID.String()); err != nil {
-		if p.Name == "" {
-			return ErrNameIsRequired
-		}
+		return ErrInvalidID
+	}
+	if p.Name == "" {
+		return ErrNameIsRequired
+	}
 
-		if p.Price == 0 {
-			return ErrPriceIsRequired
-		}
+	if p.Price == 0 {
+		return ErrPriceIsRequired
+	}
 
-		if p.Price < 0 {
-			return ErrInvalidPrice
-		}
+	if p.Price < 0 {
+		return ErrInvalidPrice
 	}
 
 	return nil
