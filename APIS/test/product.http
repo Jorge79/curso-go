@@ -3,5 +3,11 @@ Content-Type: application/json
 
 {
   "name": "Product 1",
-  "price": 100.0,
+  "price": 100.0
 }
+
+###
+
+GET http://localhost:8000/products/871725ef-6e10-408b-8c8c-2d41417a407a HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODY4ODIyOTIsInN1YiI6ImU2NjQ4MjgyLTA0MjEtNDlkMC05YTZiLWU3MWRjYTg0ODM2NyJ9.mHZ1q9t8Qg_2PH4U036OueCE3fkKQ6_PIXYmEdeTanM

@@ -26,6 +26,7 @@ func NewUserHandler(userDB database.UserInterface, jwt *jwtauth.JWTAuth, JwtEpir
 }
 
 func (h *UserHandler) GetJWT(w http.ResponseWriter, r *http.Request) {
+	r.Context().Value("token")
 	var user dto.GetJWTInput
 	err := json.NewDecoder(r.Body).Decode(&user)
 	if err != nil {
