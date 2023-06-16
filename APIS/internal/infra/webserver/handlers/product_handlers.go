@@ -9,7 +9,7 @@ import (
 	"github.com/Jorge79/estudos-go/APIS/internal/entity"
 	"github.com/Jorge79/estudos-go/APIS/internal/infra/database"
 	entityPkg "github.com/Jorge79/estudos-go/APIS/pkg/entity"
-	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/v5"
 )
 
 type ProductHandler struct {

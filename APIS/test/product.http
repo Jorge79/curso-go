@@ -1,5 +1,6 @@
 POST http://localhost:8000/products HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODY5NTUxNzcsInN1YiI6IjA0MmY3NWIxLWFlM2ItNDE5MS05MGJlLTI0NzMxMjI2NjBlMyJ9.t-O3Y37S2o0ocGJEf5frsQ2mKTbwdkYS4jndP_RM6uU
 
 {
   "name": "Product 1",
@@ -10,4 +11,15 @@ Content-Type: application/json
 
 GET http://localhost:8000/products/871725ef-6e10-408b-8c8c-2d41417a407a HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODY4ODIyOTIsInN1YiI6ImU2NjQ4MjgyLTA0MjEtNDlkMC05YTZiLWU3MWRjYTg0ODM2NyJ9.mHZ1q9t8Qg_2PH4U036OueCE3fkKQ6_PIXYmEdeTanM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODY5NTUxNzcsInN1YiI6IjA0MmY3NWIxLWFlM2ItNDE5MS05MGJlLTI0NzMxMjI2NjBlMyJ9.t-O3Y37S2o0ocGJEf5frsQ2mKTbwdkYS4jndP_RM6uU
+
+###
+
+PUT http://localhost:8000/products/871725ef-6e10-408b-8c8c-2d41417a407a HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODY5NTUxNzcsInN1YiI6IjA0MmY3NWIxLWFlM2ItNDE5MS05MGJlLTI0NzMxMjI2NjBlMyJ9.t-O3Y37S2o0ocGJEf5frsQ2mKTbwdkYS4jndP_RM6uU
+
+{
+  "name": "Product Updated",
+  "price": 200.0
+}
