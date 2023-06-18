@@ -5,12 +5,14 @@ import (
 	"net/http"
 
 	"github.com/Jorge79/estudos-go/APIS/configs"
+	_ "github.com/Jorge79/estudos-go/APIS/docs"
 	"github.com/Jorge79/estudos-go/APIS/internal/entity"
 	"github.com/Jorge79/estudos-go/APIS/internal/infra/database"
 	"github.com/Jorge79/estudos-go/APIS/internal/infra/webserver/handlers"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/jwtauth"
+	httpSwagger "github.com/swaggo/http-swagger"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -21,7 +23,11 @@ import (
 // @termsOfService http://swagger.io/terms/
 
 // @contact.name Jorge
+// @contact.url http://localhost:8000
 // @contact.email Jorge7.9@hotmail.com
+
+// @license.name MIT
+// @license url http://localhost
 
 // @host localhost:8000
 // @BasePath /
@@ -65,6 +71,8 @@ func main() {
 
 	r.Post("/users", userHandler.Create)
 	r.Post("/users/generate_token", userHandler.GetJWT)
+
+	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8000/docs/doc.json")))
 
 	http.ListenAndServe(":8000", r)
 }
