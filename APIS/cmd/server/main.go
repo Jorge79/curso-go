@@ -15,6 +15,20 @@ import (
 	"gorm.io/gorm"
 )
 
+// @title Estudos-Go Example API
+// @version 1.0
+// @description This is a sample server Petstore server.
+// @termsOfService http://swagger.io/terms/
+
+// @contact.name Jorge
+// @contact.email Jorge7.9@hotmail.com
+
+// @host localhost:8000
+// @BasePath /
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
+
 func main() {
 	configs, err := configs.LoadConfig(".")
 	if err != nil {

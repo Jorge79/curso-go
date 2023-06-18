@@ -1,0 +1,17 @@
+basePath: /
+host: localhost:8000
+info:
+  contact:
+    email: Jorge7.9@hotmail.com
+    name: Jorge
+  description: This is a sample server Petstore server.
+  termsOfService: http://swagger.io/terms/
+  title: Estudos-Go Example API
+  version: "1.0"
+paths: {}
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
