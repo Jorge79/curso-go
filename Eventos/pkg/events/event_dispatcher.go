@@ -14,7 +14,7 @@ func NewEventDispatcher() *EventDispatcher {
 	}
 }
 
-func (ed *EventDispatcher) RegisterName(eventName string, handler EventHandlerInterface) error {
+func (ed *EventDispatcher) Register(eventName string, handler EventHandlerInterface) error {
 	if _, ok := ed.handlers[eventName]; ok {
 		for _, h := range ed.handlers[eventName] {
 			if h == handler {
