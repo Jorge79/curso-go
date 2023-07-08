@@ -53,8 +53,8 @@ func (suite *EventDispatcherTestSuite) SetupTest() {
 	suite.handler3 = TestEventHandler{
 		ID: 3,
 	}
-	suite.event = TestEvent{Name: "Test", Payload: "test"}
-	suite.event2 = TestEvent{Name: "Test", Payload: "test"}
+	suite.event = TestEvent{Name: "test", Payload: "test"}
+	suite.event2 = TestEvent{Name: "test2", Payload: "test2"}
 }
 
 func (suite *EventDispatcherTestSuite) TestEventDispatcher_Register() {
@@ -77,12 +77,12 @@ func (suite *EventDispatcherTestSuite) TestEventDispatcher_Register_WithSameHand
 	suite.Equal(1, len(suite.eventDispatcher.handlers[suite.event.GetName()]))
 
 	err = suite.eventDispatcher.Register(suite.event.GetName(), &suite.handler)
-	suite.Equal(ErrEventAlreadyRegistered, err)
+	suite.Equal(ErrHandlerAlreadyRegistered, err)
 	suite.Equal(1, len(suite.eventDispatcher.handlers[suite.event.GetName()]))
 }
 
 func (suite *EventDispatcherTestSuite) TestEventDispatcher_Clear() {
-	// event 1
+	// Event 1
 	err := suite.eventDispatcher.Register(suite.event.GetName(), &suite.handler)
 	suite.Nil(err)
 	suite.Equal(1, len(suite.eventDispatcher.handlers[suite.event.GetName()]))
@@ -91,7 +91,7 @@ func (suite *EventDispatcherTestSuite) TestEventDispatcher_Clear() {
 	suite.Nil(err)
 	suite.Equal(2, len(suite.eventDispatcher.handlers[suite.event.GetName()]))
 
-	// event 2
+	// Event 2
 	err = suite.eventDispatcher.Register(suite.event2.GetName(), &suite.handler3)
 	suite.Nil(err)
 	suite.Equal(1, len(suite.eventDispatcher.handlers[suite.event2.GetName()]))
