@@ -130,7 +130,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Category.Name(childComplexity), true
 
-	case "Course.Category":
+	case "Course.category":
 		if e.complexity.Course.Category == nil {
 			break
 		}
@@ -579,8 +579,8 @@ func (ec *executionContext) fieldContext_Category_courses(ctx context.Context, f
 				return ec.fieldContext_Course_name(ctx, field)
 			case "description":
 				return ec.fieldContext_Course_description(ctx, field)
-			case "Category":
-				return ec.fieldContext_Course_Category(ctx, field)
+			case "category":
+				return ec.fieldContext_Course_category(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Course", field.Name)
 		},
@@ -717,8 +717,8 @@ func (ec *executionContext) fieldContext_Course_description(ctx context.Context,
 	return fc, nil
 }
 
-func (ec *executionContext) _Course_Category(ctx context.Context, field graphql.CollectedField, obj *model.Course) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Course_Category(ctx, field)
+func (ec *executionContext) _Course_category(ctx context.Context, field graphql.CollectedField, obj *model.Course) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Course_category(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -748,7 +748,7 @@ func (ec *executionContext) _Course_Category(ctx context.Context, field graphql.
 	return ec.marshalNCategory2ᚖgithubᚗcomᚋJorge79ᚋestudosᚑgoᚋgraphqlᚋgraphᚋmodelᚐCategory(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Course_Category(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Course_category(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Course",
 		Field:      field,
@@ -881,8 +881,8 @@ func (ec *executionContext) fieldContext_Mutation_createCourse(ctx context.Conte
 				return ec.fieldContext_Course_name(ctx, field)
 			case "description":
 				return ec.fieldContext_Course_description(ctx, field)
-			case "Category":
-				return ec.fieldContext_Course_Category(ctx, field)
+			case "category":
+				return ec.fieldContext_Course_category(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Course", field.Name)
 		},
@@ -1000,8 +1000,8 @@ func (ec *executionContext) fieldContext_Query_courses(ctx context.Context, fiel
 				return ec.fieldContext_Course_name(ctx, field)
 			case "description":
 				return ec.fieldContext_Course_description(ctx, field)
-			case "Category":
-				return ec.fieldContext_Course_Category(ctx, field)
+			case "category":
+				return ec.fieldContext_Course_category(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Course", field.Name)
 		},
@@ -3109,7 +3109,7 @@ func (ec *executionContext) _Course(ctx context.Context, sel ast.SelectionSet, o
 			}
 		case "description":
 			out.Values[i] = ec._Course_description(ctx, field, obj)
-		case "Category":
+		case "category":
 			field := field
 
 			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
@@ -3118,7 +3118,7 @@ func (ec *executionContext) _Course(ctx context.Context, sel ast.SelectionSet, o
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Course_Category(ctx, field, obj)
+				res = ec._Course_category(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&fs.Invalids, 1)
 				}
