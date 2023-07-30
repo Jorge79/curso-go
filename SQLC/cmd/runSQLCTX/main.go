@@ -24,6 +24,7 @@ type CourseParams struct {
 	ID          string
 	Name        string
 	Description sql.NullString
+	Price       float32
 }
 
 type CategoryParams struct {
@@ -65,6 +66,8 @@ func (c *CourseDB) CreateCourseAndCategory(ctx context.Context, argsCategory Cat
 			ID:          argsCourse.ID,
 			Name:        argsCourse.Name,
 			Description: argsCourse.Description,
+			CategoryID:  argsCategory.ID,
+			Price:       argsCourse.Price,
 		})
 		if err != nil {
 			return err
@@ -89,4 +92,31 @@ func main() {
 
 	queries := db.New(dbConn)
 
+	courses, err := queries.ListCourses(ctx)
+	if err != nil {
+		panic(err)
+	}
+	for _, course := range courses {
+		fmt.Printf("Category: %s, Course ID: %s, Course Name: %s, Course Description: %s, Course Price: %f",
+			course.CategoryName, course.ID, course.Name, course.Description.String, course.Price)
+	}
+
+	// courseArgs := CourseParams{
+	// 	ID:          uuid.New().String(),
+	// 	Name:        "Go",
+	// 	Description: sql.NullString{String: "Go Course", Valid: true},
+	// 	Price:       10.99,
+	// }
+
+	// categoryArgs := CategoryParams{
+	// 	ID:          uuid.New().String(),
+	// 	Name:        "Backend",
+	// 	Description: sql.NullString{String: "Backend Course", Valid: true},
+	// }
+
+	// courseDB := NewCourseDB(dbConn)
+	// err = courseDB.CreateCourseAndCategory(ctx, categoryArgs, courseArgs)
+	// if err != nil {
+	// 	panic(err)
+	// }
 }
