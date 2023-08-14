@@ -27,3 +27,4 @@ func NewUseCase(db *sql.DB) *product.ProductUseCase {
 // wire.go:
 
 var setRepositoryDependency = wire.NewSet(product.NewProductRepository, wire.Bind(new(product.ProductRepositoryInterface), new(*product.ProductRepository)))
+  
