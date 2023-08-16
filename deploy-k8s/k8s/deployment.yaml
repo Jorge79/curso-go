@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  name: server
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: myapp
+      app: server
   template:
     metadata:
       labels:
-        app: myapp
+        app: server
     spec:
       containers:
-      - name: myapp
+      - name: server
         image: jorge79/deploy-k8s:latest
         resources:
           limits:
